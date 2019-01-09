@@ -1,0 +1,68 @@
+/*盒子*/
+#box{
+    margin-top: 10px;
+    width: 1330px;
+    height: 800px;
+    margin: 0 auto;
+    border: 1px solid blue;
+}
+/*底部*/
+#footer{
+    margin-top: 2px;
+}
+/*菜单*/
+#menu{
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 300px;
+    height:790px;
+    float: left;
+}
+/*表头字体居中*/
+#table>thead>tr>th{
+    text-align: center;
+    vertical-align: middle!important;
+}
+/*表格字体居中*/
+#table>tbody>tr>td{
+    text-align: center;
+    vertical-align: middle!important;
+    height:10px;
+}
+/*用于放置信息的div*/
+#info{
+    position: relative;
+    top: 5px;
+    left: 10px;
+    width: 1000px;
+    height: 790px;
+}
+/*显示查找出数据多少的文本*/
+.fixed-table-pagination div:nth-child(1){
+    position: absolute;
+    top: 730px;
+    left:20px;
+}
+/*显示查找出数据的文本的字体*/
+.fixed-table-pagination div:nth-child(1)>span{
+    font-weight:bold;
+}
+/*分页样式*/
+.fixed-table-pagination div:nth-child(2){
+    width: 250px;
+    position: absolute;
+    left: 640px;
+    top:730px;
+ 
+}
+
+/*信息提示框样式*/
+.modal-dialog{
+    text-align: center;
+}
+#modal-studelete-dialog{
+    margin-top: 15%;
+}
+#modal-stualter-dialog{
+    margin-top: 10%;
+}

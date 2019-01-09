@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <title>注册</title>
+    <link href="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet" type="text/css" />
+     <link href="../css/demo.css" rel="stylesheet" type="text/css" />
+     <link href="../css/kuangjia.css" rel="stylesheet" type="text/css" />
+     <style>
+     	
+		body .login {
+		    width: 650px;
+		    height: 550px;
+		}
+		
+		body .login_fields {
+		    height: 208px;
+		    position: absolute;
+		    left: 0;
+		    padding-top: 0px;
+		}
+		
+		body .login_fields__submit {
+		    position: relative;
+		    left: 130px;
+		    width: 80%;
+		    right: 0;
+		    margin: auto;
+		    display: flex;
+		    margin-top: 50px;
+		}
+		
+		.login_fields__submit>div {
+		    margin-left: 50px;
+		}
+		
+		html {
+		    height: 100%;
+		    display: table;
+		}
+		
+		#mydiv {
+		    height: 100%;
+		}
+		
+		input {
+		    border-bottom: 2px solid #000;
+		}
+		
+		body .login .disclaimer {
+		    left: 40%;
+		}
+		
+		.user-photo-box {
+		    width: 160px;
+		    height: 160px;
+		    position: absolute;
+		    right: 20%;
+		    top: 50%;
+		    transform: translateY(-60%);
+		    font-size: 8ex;
+		    margin: 0 auto;
+		    border-radius: 50%;
+		    border: 1px solid white;
+		    overflow: hidden;
+		    opacity: 0.7;
+		}
+		
+		#user-photo {
+		    width: 100%;
+		    height: 100%;
+		}
+     </style>
+</head>
+
+<body>
+    <!-- 背景div -->
+    <form th:action="@{/login/register}" method="POST" name="fileForm" th:object="${teacherModel.teacher}">
+        <div id="mydiv">
+            <div id="pathh" style="visibility: hidden;">
+                <input type="hidden" name="img" th:value="*{img}" id="path">
+            </div>
+            <img id="imgg" src="" alt="" name="imgg">
+        </div>
+        <div class='login'>
+            <div class='disclaimer'>
+                欢迎注册
+            </div>
+            <div id="cun">
+                <div class='login_fields'>
+                    <div class='login_fields__user'>
+                        <div class='icon'>
+                            <img alt="" src='img/user_icon_copy.png'>
+                        </div>
+                        <input name="job_no" th:value="*{job_no}" placeholder='工号' maxlength="16" type='text' autocomplete="off" />
+                        <div class='validation'>
+                            <img alt="" src='img/tick.png'>
+                        </div>
+                    </div>
+                    <div class='login_fields__user'>
+                        <div class='icon'>
+                            <img alt="" src='img/user_icon_copy.png'>
+                        </div>
+                        <input name="uid" th:value="*{uid}" placeholder='账号' maxlength="16" type='text' autocomplete="off" />
+                        <div class='validation'>
+                            <img alt="" src='img/tick.png'>
+                        </div>
+                    </div>
+                    <div class='login_fields__password'>
+                        <div class='icon'>
+                            <img alt="" src='img/lock_icon_copy.png'>
+                        </div>
+                        <input name="password" th:value="*{password}" placeholder='密码' maxlength="16" type='text' autocomplete="off">
+                        <div class='validation'>
+                            <img alt="" src='img/tick.png'>
+                        </div> 
+                    </div>
+                    <div class='login_fields__password'>
+                        <div class='icon'>
+                            <img alt="" src='img/lock_icon_copy.png'>
+                        </div>
+                        <input name="sex" placeholder='性别' list="sex" maxlength="16" type='text' autocomplete="off">
+                        <div class='validation'>
+                            <img alt="" src='img/tick.png'>
+                        </div>
+                    </div>
+                    <datalist id="sex">
+                            <option value="男" default>
+                            <option value="女">
+                        </datalist>
+                    <div class='login_fields__password'>
+                        <div class='icon'>
+                            <img alt="" src='img/lock_icon_copy.png'>
+                        </div>
+                        <input name="name" th:value="*{name}" placeholder='姓名' maxlength="16" type='text' autocomplete="off">
+                        <div class='validation'>
+                            <img alt="" src='img/tick.png'>
+                        </div>
+                    </div>
+                    <div class='login_fields__password'>
+                        <div class='icon'>
+                            <img alt="" src='img/lock_icon_copy.png'>
+                        </div>
+                        <input name="phone" th:value="*{phone}" placeholder='电话' maxlength="16" type='text' autocomplete="off">
+                        <div class='validation'>
+                            <img alt="" src='img/tick.png'>
+                        </div>
+                    </div>
+                    <div class='login_fields__password'>
+                        <div class='icon'>
+                            <img alt="" src='img/lock_icon_copy.png'>
+                        </div>
+                        <input name="email" th:value="*{email}" placeholder='系部' list="tel" maxlength="16" type='text' autocomplete="off">
+                        <div class='validation'>
+                            <img alt="" src='img/tick.png'>
+                        </div>
+                    </div>
+                    <datalist id="tel">
+                            <option value="信息工程系">
+                            <option value="数字艺术系">
+                            <option value="电子工程系">
+                            <option value="机电工程系">
+                            <option value="电气工程系">
+                            <option value="经济管理系">
+                            <option value="汽车工程系">
+                        </datalist>
+                        
+                    <div class='login_fields__submit'>
+                        <div><input type="button" value='注册' id="register" /></div>
+                        <div>
+                             <a th:href="@{/login}"><input type="button" value='返回' id="register" /></a> 
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="user-photo-box" data-target="#changeModal" data-toggle="modal">
+                    <img id="user-photo" src="img/111.jpg" alt="+">
+                </div>
+            </div>
+        </div>
+        </form>
+
+        <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title text-primary">
+                            <i class="fa fa-pencil"></i> 更换头像
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="tip-info text-center">
+                            未选择图片
+                        </p>
+                        <div class="img-container hidden">
+                            <img src="" alt="" id="photo">
+                        </div>
+                        <div class="img-preview-box hidden">
+                            <hr>
+                            <div class="img-preview img-preview-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <label class="btn btn-danger pull-left" for="photoInput">
+                                <input type="file" class="sr-only" id="photoInput" accept="image/*">
+                                <span>打开图片</span>
+                                </label>
+                        <button class="btn btn-primary disabled" disabled="true" onclick="sendPhoto();" type="button">提交</button>
+                        <button class="btn btn-close" aria-hidden="true" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/cropperdiv.js"></script>
+<script type="text/javascript" src="../canvas_js/canvas_config.js"></script>
+<script type="text/javascript" src="../canvas_js/canvas-particle.js"></script>
+
+<script>
+		var cz = document.getElementById("register");
+		var user_photo = document.getElementById("user-photo");
+		var path = document.getElementById("path");
+		 cz.onclick = function() {
+			 path.value = user_photo.src;
+			 alert(path.value);
+			    if (confirm('你确定要修改？')) {
+			    	
+			        document.fileForm.submit();
+			    } else {
+			        return false;
+			    }
+		     }
+      
+</script>
+
+</html>

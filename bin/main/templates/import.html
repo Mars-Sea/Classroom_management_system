@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SheetJS Live Demo</title>
+</head>
+
+<body>
+    <pre>
+<input type="file" name="xlfile" id="xlf">
+</pre>
+    <pre id="out" style="display: none;"></pre>
+    <div id="htmlout"></div>
+    <br>
+        <form th:action="@{/student/import}" method="POST" name="fileForm" th:object="${studentModel.student}">
+        <button type="submit">确认导入</button>
+        <table id="testTab" border="1"></table>
+    </form>
+
+	<script type="text/javascript" th:src="@{../js/ga.js}" src="js/ga.js"></script>
+    <script type="text/javascript" th:src="@{../js/shim.js}" src="js/shim.js"></script>
+    <script type="text/javascript" th:src="@{../js/xlsx.full.min.js}" src="js/xlsx.full.min.js"></script>
+    <script type="text/javascript" th:src="@{../js/jquery.js}" src="js/jquery.js"></script>
+    <script>
+        /*jshint browser:true */
+        /* eslint-env browser */
+        /* eslint no-use-before-define:0 */
+        /*global Uint8Array, Uint16Array, ArrayBuffer */
+        /*global XLSX */
+
+        var X = XLSX;
+
+        var global_wb;
+
+        var process_wb = (function() {
+            var OUT = document.getElementById('out');
+            var HTMLOUT = document.getElementById('htmlout');
+            var to_json = function to_json(workbook) {
+                var result = {};
+                workbook.SheetNames.forEach(function(sheetName) {
+                    var roa = X.utils.sheet_to_json(workbook.Sheets[sheetName], {
+                        header: 1
+                    });
+                    //var roa = X.utils.sheet_to_json(workbook.Sheets[sheetName]); 
+                    if (roa.length) result[sheetName] = roa;
+                });
+                return JSON.stringify(result, 2, 2);
+            };
+
+            return function process_wb(wb) {
+                global_wb = wb;
+                var output = "";
+                output = to_json(wb);
+                if (OUT.innerText === undefined) OUT.textContent = output;
+                else OUT.innerText = output;
+                dealJson(output);
+            };
+        })();
+
+
+        var do_file = (function() {
+            return function do_file(files) {
+                var f = files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var data = e.target.result;
+                    data = new Uint8Array(data);
+                    process_wb(X.read(data, {
+                        type: 'array'
+                    }));
+                };
+                reader.readAsArrayBuffer(f);
+            };
+        })();
+        (function() {
+            var xlf = document.getElementById('xlf');
+            if (!xlf.addEventListener) return;
+
+            function handleFile(e) {
+                do_file(e.target.files);
+            }
+            xlf.addEventListener('change', handleFile, false);
+
+        })();
+    </script>
+
+    <script type="text/javascript">
+        function dealJson(sJson) {
+            var vJson = eval('(' + sJson + ')');
+            var $testTab = $("#testTab");
+            var conCout = 9
+            var string_name = new Array("sno", "sname", "sex", "sabsent", "slate", "sleave", "speacetime", "sterminal", "sclassname");
+            for (var n in vJson) {
+                for (var k = 1; k < vJson[n].length; k++) {
+                    var str = "<tr>";
+                    for (let c = 0; c < conCout; c++) {
+                        var tm = vJson[n][k][c] == undefined ? "" : vJson[n][k][c];
+                        // str += "<td><input type='text' id='lz" + n + "' value='" + tm + "'></td>";
+                       
+                        str += "<td><input name='" + string_name[c] + "' th:value='*{" + string_name[c] + "}' type='text' id='lz" + n + "' value='" + tm +"##"+ "'></td>";
+                    }
+                   
+                    str += "</tr>";
+                    
+                    $testTab.append(str);
+                    //str.parentNode.removeChild(str);
+                    //document.fileForm.submit();
+                    
+                }
+            };
+        }
+    </script>
+
+</body>
+</html>
