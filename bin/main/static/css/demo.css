@@ -91,6 +91,8 @@ main .loaders .loader {
 }
 
 .J_codeimg {
+	position: relative;
+	left:-240px;
     width: 85px;
     height: 36px;
     padding: 3px;

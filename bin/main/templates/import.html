@@ -89,8 +89,8 @@
         function dealJson(sJson) {
             var vJson = eval('(' + sJson + ')');
             var $testTab = $("#testTab");
-            var conCout = 9
-            var string_name = new Array("sno", "sname", "sex", "sabsent", "slate", "sleave", "speacetime", "sterminal", "sclassname");
+            var conCout = 4
+            var string_name = new Array("sno", "sname", "sex", "className");
             for (var n in vJson) {
                 for (var k = 1; k < vJson[n].length; k++) {
                     var str = "<tr>";

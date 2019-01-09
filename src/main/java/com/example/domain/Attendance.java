@@ -2,6 +2,7 @@ package com.example.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement  //MediaType 转为 XML
 @Table
-public class Score implements Serializable {
+public class Attendance implements Serializable {
 	
 	/**
 	 * 
@@ -20,16 +21,41 @@ public class Score implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
+	private String sno;
+	private String sname;
+	private String courseName;
 	private int absent;   //旷课
 	private int late;    //迟到
 	private int sleave;   //请假
 	private int point;   //加分
 	private int general_comment;   //总分
-	private String remark;
+	private String remark;   //备注
 	
 	
-	
-	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getSno() {
+		return sno;
+	}
+	public void setSno(String sno) {
+		this.sno = sno;
+	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+	public String getCourseName() {
+		return courseName;
+	}
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
 	public int getAbsent() {
 		return absent;
 	}
@@ -66,6 +92,11 @@ public class Score implements Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	
+	
+	
+	
+	
 	
 	
 }

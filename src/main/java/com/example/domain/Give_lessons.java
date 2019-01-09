@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table
 public class Give_lessons implements Serializable {
 
-	
 	/**
 	 * 
 	 */
@@ -21,11 +20,27 @@ public class Give_lessons implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	private String courseName;
+	private String className;
+	private String name;
+	
+	public String getCourseName() {
+		return courseName;
 	}
-	
-	
-	
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+	public String getClassName() {
+		return className;
+	}
+	public void setClassName(String className) {
+		this.className = className;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 }

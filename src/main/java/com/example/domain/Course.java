@@ -1,12 +1,7 @@
 package com.example.domain;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -20,11 +15,7 @@ public class Course {
 	private Long course_no;
 	private String courseName;
 	
-	 @ManyToMany(cascade = CascadeType.ALL, mappedBy = "courses")
-	 private List<Teacher> teachers;
-	 
-	 @ManyToMany(cascade = CascadeType.ALL, mappedBy = "courses")
-	 private List<Student> students;
+
 	
 	public Long getCourse_no() {
 		return course_no;
@@ -38,18 +29,7 @@ public class Course {
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
-	public List<Teacher> getTeachers() {
-		return teachers;
-	}
-	public void setTeachers(List<Teacher> teachers) {
-		this.teachers = teachers;
-	}
-	public List<Student> getStudents() {
-		return students;
-	}
-	public void setStudents(List<Student> students) {
-		this.students = students;
-	}
+
 	
 	
 	

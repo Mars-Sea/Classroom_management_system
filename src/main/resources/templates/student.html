@@ -16,8 +16,8 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/bootstrap-table.min.js"></script>
 	<!-- Latest compiled and minified Locales -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/locale/bootstrap-table-zh-CN.min.js"></script>
-	<script src="student.js"></script>
-    <link rel="stylesheet" href="student.css">
+	<script src="../student.js"></script>
+    <link rel="stylesheet" href="../student.css">
     <title id="title">班级名称</title>
     
 </head>
@@ -26,7 +26,7 @@
   
     <div id="box">
       <!--菜单栏-->
-      <h1></h1>
+      
       <div id="menu">
 
       </div>
@@ -34,30 +34,21 @@
       <div id="info"  class="table-responsive">        
         <table id="table" class="table table-hover table-bordered table-sm">
           <thead class="thead-dark">
-            <tr>
-              <th>学号</th>
-              <th>姓名</th>
-              <th>性别</th>
-              <th>旷课</th>
-              <th>迟到</th>
-              <th>请假</th>
-              <th>平时成绩</th>
-              <th>期末成绩</th>
-              <th>班级名称</th>
-              <th>操作</th>
-            </tr>
+            
           </thead>
           <tbody>
-            <tr th:each="student:${studentModel.studentlist}" th:id="${student.id}">
+            <tr th:each="student:${studentModel.studentlist}" th:id="${student.sno}">
               <td th:title="${student.sno}" id="sno" th:text="${student.sno}">sno</td>
               <td id="name" th:text="${student.sname}">sname</td>
               <td th:text="${student.sex}">sex</td>
+              <!-- 
               <td th:text="${student.sabsent}">absent</td>
               <td th:text="${student.slate}">late</td>
               <td th:text="${student.sleave}">leave</td>
               <td th:text="${student.speacetime}">peacetime</td>
               <td th:text="${student.sterminal}">terminal</td>
-              <td id="classname" th:text="${student.sclassname}">classname</td>
+               -->
+              <td id="classname" th:text="${student.className}">class_name</td>
               <td id="caozuo">
 	              <button type="button" class="btn btn-primary btn-outline-danger btn-sm" data-toggle="modal" data-target="#myModal-stuDelete" onclick="stuDelete(this)">删除</button>
 	              <button type="button" class="btn btn-primary btn-outline-info btn-sm" data-toggle="modal" data-target="#myModal-stuAlter" onclick="stuAlter(this)">修改</button>

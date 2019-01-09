@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+        <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+        <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+<style>
+    .container{
+        position: relative;
+    }
+    
+    
+    a{
+        margin-left: 50px;
+    }
+	
+    #collapseOne{
+    	display:flex;
+    	flex-flow: row wrap;
+    	
+    }
+    .card{
+		flex:0 1 18%;   /* 宽度 */
+		text-align:center;
+		margin-right:20px;
+		margin-top: 20px;	
+	}
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>选择班级</h2>
+  <input id="uid" type="hidden" value="">
+  <br>
+
+      <div id="collapseOne" class="collapse" data-parent="#accordion">
+        <div class="card" style="width:200px" th:if="${index.name == teacherModel.tname}" th:each="index:${teacherModel.give}">
+        <div >
+    		<img class="card-img-top" src="https://static.runoob.com/images/mix/img_avatar.png" alt="Card image" style="width:100%">
+    		<div class="card-body">
+     			<h4 class="card-title" th:text="${index.className}">John Doe</h4>
+      			<p class="card-text" th:text="${index.courseName}"></p>
+      			<a th:href="@{'/student' + ${index.className} + ${index.courseName}}" class="btn btn-primary">进入班级</a>
+    		</div>
+  		</div>
+  		</div>
+      </div>
+      <br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">添加班级</button>
+</div>
+<!-- 模态框 -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+   
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">添加班级</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+   
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+         		<form th:action="@{login/give_lessons}" method="POST" name="fileForm" th:object="${give_lessons}">
+         			<p>班级：<input type='text' list="classname" name="className"></p>
+         			<datalist id="classname"  >
+                            <option th:each="index:${teacherModel.classname}" th:value="${index.className}">
+                     </datalist>
+                     <p>课程：<input type='text' list="coursename" name="courseName"></p>
+         			<datalist id="coursename"   >
+                            <option th:each="index:${teacherModel.coursename}" th:value="${index.courseName}" >
+                     </datalist>
+                     <p>老师：<input type='text' th:value="${teacherModel.tname}" name="name" ></p>
+
+         		</form>
+        </div>
+   
+        <!-- 模态框底部 -->
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick = "btn()">添加</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        </div>
+   
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+	var uid = document.getElementById("uid").value;
+	uid=localStorage.u;
+</script>
+
+
+<script>
+	function btn(){
+		document.fileForm.submit();
+	}
+</script>
+</body>
+</html>
