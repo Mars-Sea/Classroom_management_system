@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -25,13 +27,10 @@ public class Teacher {
 	private String img;
 	private String phone;
 	private String email;
-	private int power;
-	
-	 @ManyToMany(cascade = CascadeType.ALL)
-	 @JoinTable(name = "Give_lessons")
-	 private List<Course> courses;
+	private String power;
 	
 	
+
 	public String getJob_no() {
 		return job_no;
 	}
@@ -80,17 +79,11 @@ public class Teacher {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getPower() {
+	public String getPower() {
 		return power;
 	}
-	public void setPower(int power) {
+	public void setPower(String power) {
 		this.power = power;
-	}
-	public List<Course> getCourses() {
-		return courses;
-	}
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
 	}
 	
 	

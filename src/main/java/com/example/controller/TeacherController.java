@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.repository.ClassesRepository;
+import com.example.repository.CourseRepository;
 import com.example.repository.TeacherRepository;
 import com.example.domain.*;
 
@@ -27,6 +29,11 @@ public class TeacherController {
 
 	@Autowired
 	private TeacherRepository teacherRepository;
+	
+	@Autowired
+	private ClassesRepository classisRepository;
+	@Autowired
+	private CourseRepository courseRepository;
 	
 	/*
 	 * 从用户仓库中获取用户列表
@@ -52,9 +59,22 @@ public class TeacherController {
 		model.addAttribute("teacherList", getTeacherlist());
 		model.addAttribute("title", "账号或密码错误");
 		List<Teacher> u = teacherRepository.findAll();
+		List<Classes> c = classisRepository.findAll();
+		List<Course> k = courseRepository.findAll();
+		
 		for(int i = 0; i<u.size(); i++) {
-			if(u.get(i).getUid().equals(teacher.getUid()) && u.get(i).getPassword().equals(teacher.getPassword()) && teacher.getPower() == 0 ){
-				return new ModelAndView("redirect:/student");
+			if(u.get(i).getUid().equals(teacher.getUid()) && u.get(i).getPassword().equals(teacher.getPassword())){
+				if(teacher.getPower().equals("1") ) {
+					model.addAttribute("tname", u.get(i).getName());
+					model.addAttribute("classname", c);
+					model.addAttribute("coursename", k);
+					return new ModelAndView("/index","teacherModel",model);
+				}if(teacher.getPower().equals("2")) {
+					return new ModelAndView("/login","teacherModel",model);
+				}else {
+					return new ModelAndView("/login","teacherModel",model);
+				}
+
 			}
 		}
 		return new ModelAndView("/login","teacherModel",model);
@@ -66,6 +86,7 @@ public class TeacherController {
 		model.addAttribute("title", "");
 		return new ModelAndView("/register","teacherModel",model);
 	}
+	
 	//注册教师
 	@PostMapping("/register")
 	public ModelAndView create(Teacher teacher) {

@@ -36,4 +36,9 @@ dependencies {
 	runtime('com.h2database:h2:1.4.194')
 	//thymeleaf
 	implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+	//添加jquery依赖
+	compile group: 'org.webjars.bower', name: 'jquery', version: '3.3.0'
+
+	//添加bootstrap依赖
+	compile group: 'org.webjars', name: 'bootstrap', version: '4.1.0'
 }
