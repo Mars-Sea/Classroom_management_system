@@ -24,14 +24,14 @@ public class Attendance implements Serializable {
 	private String sno;
 	private String sname;
 	private String courseName;
+	private String className;
 	private int absent;   //旷课
 	private int late;    //迟到
 	private int sleave;   //请假
 	private int point;   //加分
 	private int general_comment;   //总分
 	private String remark;   //备注
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -92,7 +92,12 @@ public class Attendance implements Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
+	public String getClassName() {
+		return className;
+	}
+	public void setClassName(String className) {
+		this.className = className;
+	}
 	
 	
 	
