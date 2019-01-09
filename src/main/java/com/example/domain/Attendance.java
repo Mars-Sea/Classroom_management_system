@@ -24,14 +24,22 @@ public class Attendance implements Serializable {
 	private String sno;
 	private String sname;
 	private String courseName;
+<<<<<<< HEAD:src/main/java/com/example/domain/Attendance.java
+=======
+	private String className;
+>>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a:src/main/java/com/example/domain/Attendance.java
 	private int absent;   //旷课
 	private int late;    //迟到
 	private int sleave;   //请假
 	private int point;   //加分
 	private int general_comment;   //总分
 	private String remark;   //备注
+<<<<<<< HEAD:src/main/java/com/example/domain/Attendance.java
 	
 	
+=======
+
+>>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a:src/main/java/com/example/domain/Attendance.java
 	public Long getId() {
 		return id;
 	}
@@ -92,6 +100,16 @@ public class Attendance implements Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	public String getClassName() {
+		return className;
+	}
+	public void setClassName(String className) {
+		this.className = className;
+	}
+	
+	
+	
+	
 	
 	
 	
