@@ -1,0 +1,59 @@
+/* 设置放置菜单图标背景原来的颜色 */
+
+.div>nav {
+    border: 1px solid red;
+    margin-top: 0px;
+    width: 300px;
+    background-color: #555555;
+    color: rgba(0, 0, 0, 0.87);
+    -webkit-clip-path: circle(24px at 30px 24px);
+    clip-path: circle(24px at 32px 28px);
+    -webkit-transition: -webkit-clip-path 0.5625s, clip-path 0.375s;
+    transition: -webkit-clip-path 0.5625s, clip-path 0.75s;/*收起速度*/
+}
+/* 设置鼠标移到菜单图标上的样式 */
+.div>nav:hover {
+
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    -webkit-transition-duration: 0.75s;
+    transition-duration: 1s;/*打开速度*/
+    -webkit-clip-path: circle(390px at 225px 24px);
+    clip-path: circle(450px at 150px 350px); /*圆打开大小*/
+    background-color: #BFDADE;
+}
+/* 设置链接样式 */
+.div>nav>a {
+    display: block;
+    line-height: 50px;
+    padding: 0 20px;
+    color: inherit;
+    cursor: pointer;
+    -webkit-user-select: none; 
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* 设置鼠标移到链接上的颜色样式 */
+.div>nav>a:hover {
+    background: #ffe082;
+}
+/* 设置鼠标在链接上的活动状态 */
+.div>nav>a:active {
+    background: #ffca28;
+}
+/* 设置图标放置的位置样式 */
+.navicon {
+    padding: 21px 22px;
+    cursor: pointer;
+    -webkit-transform-origin: 32px 24px;
+    -ms-transform-origin: 32px 24px;
+    transform-origin: 32px 24px;
+}
+
+/* 设置菜单图标 */
+.fa{
+    margin-top: -40px;
+    margin-left: -3px;
+}
+

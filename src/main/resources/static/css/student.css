@@ -4,7 +4,7 @@
     width: 1330px;
     height: 800px;
     margin: 0 auto;
-    border: 1px solid blue;
+    border: 1px solid red;
 }
 /*底部*/
 #footer{
@@ -18,6 +18,8 @@
     height:790px;
     float: left;
 }
+
+
 /*表头字体居中*/
 #table>thead>tr>th{
     text-align: center;
@@ -58,11 +60,35 @@
 
 /*信息提示框样式*/
 .modal-dialog{
-    text-align: center;
+
 }
 #modal-studelete-dialog{
     margin-top: 15%;
 }
 #modal-stualter-dialog{
     margin-top: 10%;
+}
+
+/*a标签按钮样式*/
+#studelete{
+    color: #cd0000;
+}
+#studelete:hover{
+    color:white;
+}
+#stualter{
+    color:#009999;
+}
+#stualter:hover{
+    color:white;
+}
+/*搜索框长度*/
+.pull-right{
+    width:1000px;
+}
+
+/*修改模态框的样式*/
+#modal-stualter-body{
+	margin: 0 auto;
+	width:300px;
 }
