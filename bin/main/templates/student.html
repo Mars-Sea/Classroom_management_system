@@ -8,21 +8,11 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/bootstrap-table.min.css">
-<<<<<<< HEAD
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/bootstrap-table.min.js"></script>
-	<!-- Latest compiled and minified Locales -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/locale/bootstrap-table-zh-CN.min.js"></script>
-	<script src="../student.js"></script>
     <link rel="stylesheet" href="../student.css">
-    <title id="title">班级名称</title>
-    
-=======
-    <link rel="stylesheet" href="../css/student.css">
+	<link rel="stylesheet" href="../css/student.css">
     <link rel="stylesheet" href="../css/studentMenu.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-    <title id="title" class="JAVA">软件17-1</title>
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
+    <title id="title">班级名称</title>
 </head>
 <body>
   <!--顶部-->
@@ -31,10 +21,6 @@
   </div>
     <div id="box">
       <!--菜单栏-->
-<<<<<<< HEAD
-      
-=======
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
       <div id="menu">
 		<div class="div">
         <nav>
@@ -42,48 +28,30 @@
                 <i class="fa fa-navicon" style="font-size:30px;color:white;"></i><!--图标-->
             </div>
             <!--超链接选项-->
-            <a>Home</a>
-            <a>Categories</a>
-            <a>Recommended</a>
-            <a>Blog</a>
-            <a>Contact</a>
-            <a>第一个</a>
-            <a>第一个</a>
+            <a><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">老虎机点名</button></a>
+            <a>转盘点名</a>
+            <a>作业管理</a>
+            <a>暂定</a>
+            <a>暂定</a>
+            <a th:href="@{/Export} + ${studentModel.classname} +SCITC+ ${studentModel.coursename}">导出</a>
         </nav>
     	</div>
       </div>
-      <!--信息显示-->
+      <!--信息显示 -->
       <div id="info"  class="table-responsive">        
         <table id="table" class="table table-hover table-bordered table-sm">
           <thead class="thead-dark">
-<<<<<<< HEAD
-            
-=======
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
-          </thead>
+			</thead>
           <tbody>
-            <tr th:each="student:${studentModel.studentlist}" th:id="${student.sno}">
+            <tr th:each="student:${studentModel.attlist}" th:id="${student.sno}">
               <td th:title="${student.sno}" id="sno" th:text="${student.sno}">sno</td>
-<<<<<<< HEAD
-              <td id="name" th:text="${student.sname}">sname</td>
-              <td th:text="${student.sex}">sex</td>
-              <!-- 
-              <td th:text="${student.sabsent}">absent</td>
-              <td th:text="${student.slate}">late</td>
-              <td th:text="${student.sleave}">leave</td>
-              <td th:text="${student.speacetime}">peacetime</td>
-              <td th:text="${student.sterminal}">terminal</td>
-               -->
-              <td id="classname" th:text="${student.className}">class_name</td>
-=======
-             <td id="name" th:text="${student.sname}">sname</td>
+              <td  th:text="${student.sname}">sname</td>
               <td th:text="${student.className}">classname</td>
               <td th:text="${student.absent}">absent</td>
               <td th:text="${student.late}">late</td>
               <td th:text="${student.sleave}">leave</td>
               <td th:text="${student.point}">point</td>
               <td th:text="${student.general_comment}">general_comment</td>
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
               <td id="caozuo">
 	              <button th:name="${student.sno}" type="button" class="btn btn-primary btn-outline-danger btn-sm" data-toggle="modal" data-target="#myModal-stuDelete" onclick="stuDelete(this)">删除</button>
 	              <button th:name="${student.sno}" type="button" class="btn btn-primary btn-outline-info btn-sm" data-toggle="modal" data-target="#myModal-stuAlter" onclick="stuAlter(this)">修改</button>
@@ -93,6 +61,7 @@
           </tbody>
         </table>
       </div>
+     
     </div>
     <!-- 删除学生模态框 -->
   <div class="modal fade" id="myModal-stuDelete">
@@ -155,6 +124,9 @@
         </div>
       </div>
     </div>
+ 
+    
+    
     <!--底部-->
     <div id="footer">
       <div th:replace="fragments/footer::footer"></div>  

@@ -18,12 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.repository.AttendanceRepository;
 import com.example.repository.ClassesRepository;
 import com.example.repository.CourseRepository;
-<<<<<<< HEAD
 import com.example.repository.Give_lessonsRepository;
-=======
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
+import com.example.repository.StudentRepository;
 import com.example.repository.TeacherRepository;
 import com.example.domain.*;
 
@@ -38,11 +37,13 @@ public class TeacherController {
 	private ClassesRepository classisRepository;
 	@Autowired
 	private CourseRepository courseRepository;
-<<<<<<< HEAD
 	@Autowired
 	private Give_lessonsRepository give_lessonsRepository;
-=======
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
+	@Autowired
+	private AttendanceRepository attendanceRepository;
+	@Autowired
+	private StudentRepository studentRepository;
+	
 	
 	/*
 	 * 从用户仓库中获取用户列表
@@ -70,7 +71,6 @@ public class TeacherController {
 		List<Teacher> u = teacherRepository.findAll();
 		List<Classes> c = classisRepository.findAll();
 		List<Course> k = courseRepository.findAll();
-<<<<<<< HEAD
 		List<Give_lessons> g = give_lessonsRepository.findAll();
 		//System.out.println("123");
 		
@@ -82,22 +82,6 @@ public class TeacherController {
 					model.addAttribute("coursename", k);
 					model.addAttribute("give", g);
 					return new ModelAndView("/index","teacherModel",model);
-=======
-		
-		for(int i = 0; i<u.size(); i++) {
-			if(u.get(i).getUid().equals(teacher.getUid()) && u.get(i).getPassword().equals(teacher.getPassword())){
-				if(teacher.getPower().equals("1") ) {
-					model.addAttribute("tname", u.get(i).getName());
-					model.addAttribute("classname", c);
-					model.addAttribute("coursename", k);
-					return new ModelAndView("/index","teacherModel",model);
-				}if(teacher.getPower().equals("2")) {
-					return new ModelAndView("/login","teacherModel",model);
-				}else {
-					return new ModelAndView("/login","teacherModel",model);
-				}
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
-
 			}
 		}
 		return new ModelAndView("/login","teacherModel",model);
@@ -191,8 +175,31 @@ public class TeacherController {
 	
 	@PostMapping("/give_lessons")
 	public ModelAndView give(Give_lessons give_lessons) {
-		System.out.println("123");
-		System.out.println(give_lessons.getClassName());
+		//System.out.println("123");
+		//System.out.println(give_lessons.getClassName());
+		String bj = give_lessons.getClassName();
+		String kc = give_lessons.getCourseName();
+		Attendance att = new Attendance();
+		Long i=20L;
+		//List<Attendance> atten = new ArrayList<Attendance>();
+		for (Student s : studentRepository.findByClassName(bj)) {
+			System.out.println(s.getSname());
+			att.setSno(s.getSno());
+			att.setSname(s.getSname());
+			att.setClassName(bj);
+			att.setCourseName(kc);
+			att.setAbsent(0);
+			att.setSleave(0);
+			att.setLate(0);
+			att.setPoint(0);
+			att.setRemark("");
+			att.setGeneral_comment(0);	
+			att.setId(i);
+			i++;
+			//atten.add(att);
+			attendanceRepository.save(att);
+		}
+		//attendanceRepository.saveAll(atten);
 		give_lessons = give_lessonsRepository.save(give_lessons);
 		return new ModelAndView("redirect:/login");
 	}

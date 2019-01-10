@@ -13,7 +13,7 @@
     <pre id="out" style="display: none;"></pre>
     <div id="htmlout"></div>
     <br>
-        <form th:action="@{/student/import}" method="POST" name="fileForm" th:object="${studentModel.student}">
+        <form th:action="@{/import}" method="POST" name="fileForm" th:object="${studentModel.student}">
         <button type="submit">确认导入</button>
         <table id="testTab" border="1"></table>
     </form>

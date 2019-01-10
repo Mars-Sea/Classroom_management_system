@@ -27,14 +27,7 @@ public class Teacher {
 	private String img;
 	private String phone;
 	private String email;
-<<<<<<< HEAD
 	private int power;
-=======
-	private String power;
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
-	
-	
-
 	public String getJob_no() {
 		return job_no;
 	}
@@ -83,13 +76,13 @@ public class Teacher {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPower() {
+	public int getPower() {
 		return power;
 	}
-	public void setPower(String power) {
+	public void setPower(int power) {
 		this.power = power;
 	}
-	
+
 	
 	
 

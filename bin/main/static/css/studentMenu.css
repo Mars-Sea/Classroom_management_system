@@ -1,7 +1,6 @@
 /* 设置放置菜单图标背景原来的颜色 */
 
 .div>nav {
-    border: 1px solid red;
     margin-top: 0px;
     width: 300px;
     background-color: #555555;

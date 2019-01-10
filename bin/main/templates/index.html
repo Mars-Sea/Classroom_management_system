@@ -16,6 +16,9 @@
         <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <style>
+	#import-btn{
+		
+	}
     .container{
         position: relative;
     }
@@ -24,7 +27,6 @@
     a{
         margin-left: 50px;
     }
-<<<<<<< HEAD
 	
     #collapseOne{
     	display:flex;
@@ -37,24 +39,19 @@
 		margin-right:20px;
 		margin-top: 20px;	
 	}
-=======
-    .card {
-    	width:100%;
-    }
-    .collapse {
-    	height:500px;
-    	flot:left;
-    }
+  
     
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
 </style>
 </head>
 <body>
+ <!--顶部-->
+  <div id="header">
+      <div th:replace="fragments/header::header"></div>
+  </div>
 <div class="container">
   <h2>选择班级</h2>
   <input id="uid" type="hidden" value="">
   <br>
-<<<<<<< HEAD
 
       <div id="collapseOne" class="collapse" data-parent="#accordion">
         <div class="card" style="width:200px" th:if="${index.name == teacherModel.tname}" th:each="index:${teacherModel.give}">
@@ -63,35 +60,15 @@
     		<div class="card-body">
      			<h4 class="card-title" th:text="${index.className}">John Doe</h4>
       			<p class="card-text" th:text="${index.courseName}"></p>
-      			<a th:href="@{'/student' + ${index.className} + ${index.courseName}}" class="btn btn-primary">进入班级</a>
+      			<a th:href="@{'/student' + ${index.className} +SCITC+ ${index.courseName} }" onclick="course_class(this)" class="btn btn-primary">进入班级</a>
     		</div>
   		</div>
   		</div>
       </div>
       <br>
-=======
-   <div id="accordion">
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapseOne" >选项一</a>
-      </div>
-      <div class="card-body">
-      <div id="collapseOne" class="collapse show" data-parent="#accordion">
-        <div class="card" style="width:250px">
-    		<img class="card-img-top" src="https://static.runoob.com/images/mix/img_avatar.png" alt="Card image" style="width:100%">
-    		<div class="card-body">
-     			<h4 class="card-title">John Doe</h4>
-      			<p class="card-text"></p>
-      			<a href="#" class="btn btn-primary">进入班级</a>
-    		</div>
-  		</div>
-      </div>
-      </div>
-      
-    </div>
-   </div>
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
+   
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">添加班级</button>
+    <a id="import-btn" role="button" class="btn btn-primary text-white" th:href="@{/import}">导入学生</a>
 </div>
 <!-- 模态框 -->
   <div class="modal fade" id="myModal">
@@ -106,8 +83,7 @@
    
         <!-- 模态框主体 -->
         <div class="modal-body">
-<<<<<<< HEAD
-         		<form th:action="@{login/give_lessons}" method="POST" name="fileForm" th:object="${give_lessons}">
+         		<form th:action="@{/login/give_lessons}" method="POST" name="fileForm" th:object="${give_lessons}">
          			<p>班级：<input type='text' list="classname" name="className"></p>
          			<datalist id="classname"  >
                             <option th:each="index:${teacherModel.classname}" th:value="${index.className}">
@@ -117,55 +93,33 @@
                             <option th:each="index:${teacherModel.coursename}" th:value="${index.courseName}" >
                      </datalist>
                      <p>老师：<input type='text' th:value="${teacherModel.tname}" name="name" ></p>
-=======
-         		模态框内容..
-         		<form>
-         			<p>班级：<input type='text' list="classname"></p>
-         			<datalist id="classname"  >
-                            <option th:each="index:${teacherModel.classname}" th:value="${index.className}">
-                     </datalist>
-                     <p>课程：<input type='text' list="coursename"></p>
-         			<datalist id="coursename"   >
-                            <option th:each="index:${teacherModel.coursename}" th:value="${index.courseName}" >
-                     </datalist>
-                     <p>老师：<input type='text' th:value="${teacherModel.tname}" ></p>
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
-
+					
          		</form>
-        </div>
    
         <!-- 模态框底部 -->
         <div class="modal-footer">
-<<<<<<< HEAD
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick = "btn()">添加</button>
-=======
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">添加</button>
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
+
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
         </div>
    
       </div>
     </div>
   </div>
+  </div>
+  <p></p>
+  <div id="footer">
+      <div th:replace="fragments/footer::footer"></div>  
+   </div>
 <script type="text/javascript">
 	var uid = document.getElementById("uid").value;
 	uid=localStorage.u;
-</script>
-
-
-<script>
-<<<<<<< HEAD
 	function btn(){
 		document.fileForm.submit();
-=======
-	window.onload=function(){
-		var classnames=document.getElementById("classnames");
-		var classnamearray=classnames.innerHTML.split("##");
-		//alert(classnamearray[1]);
-		var classnam=document.getElementById("classname");
-		
->>>>>>> d9f9ad24331d4952de7e689d3ba74b5b4c9cc53a
 	}
 </script>
+<!--底部-->
+    
 </body>
 </html>
